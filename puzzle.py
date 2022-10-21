@@ -12,18 +12,32 @@ CLieosaurus = Symbol("C is a Lieosaurus")
 # Puzzle 0
 # A says "I am both a Truthoraptor and a Lieosaurus."
 knowledge0 = And(
-    # TODO
-    # A cannot be both a Truthoraptor and a Lieosaurus, therefore they must be a Lieosaurus
-    Symbol(ALieosaurus)
+    # A cannot be both a Truthoraptor and a Lieosaurus
+    Biconditional(ATruthoraptor, Not(ALieosaurus)),
+    Biconditional(ALieosaurus, Not(ATruthoraptor)),
+    
+    # Based in A's statement, If A is telling the truth (it is a truthoraptor), it is also a lieosauraus
+    Implication(ATruthoraptor, ALieosaurus)
 )
 
 # Puzzle 1
 # A says "We are both Lieosauruss."
 # B says nothing.
 knowledge1 = And(
-    # TODO
     # Since A is a Lieosaurus then the statement "We are both Lieosauruss" cannot be true, therefore -(A^B)
-    Implication(Symbol(ALieosaurus), Not(Symbol(BLieosaurus)))
+
+    # A dinosaur is cannot be both a Truthoraptor and a Lieosaurus
+    Biconditional(ATruthoraptor, Not(ALieosaurus)),
+    Biconditional(ALieosaurus, Not(ATruthoraptor)),
+    Biconditional(BTruthoraptor, Not(BLieosaurus)),
+    Biconditional(BLieosaurus, Not(BTruthoraptor)),
+
+
+    # If A is a telling the truth, then both A and B are a Lieosauraus
+    Implication(ATruthoraptor, And(ALieosaurus, BLieosaurus)),
+
+    # If A is NOT telling the truth, then A is A Lieousaurs and B is not a Lieosaurus
+    Implication(Not(ATruthoraptor), And(ALieosaurus, Not(BLieosaurus)))
 )
 
 # Puzzle 2
