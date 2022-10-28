@@ -1,3 +1,8 @@
+# Project 2
+# Davina Doran
+# Nicholas Girmes
+# Robin Khiv
+# Nathan Mayne
 from logic import *
 
 ATruthoraptor = Symbol("A is a Truthoraptor")
